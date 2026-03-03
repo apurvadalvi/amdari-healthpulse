@@ -1,0 +1,51 @@
+{
+    "path_count": 156,
+    "parsed_path_count": 156,
+    "static_analysis_path_count": 1,
+    "static_analysis_parsed_path_count": 1,
+    "is_partial_parse_enabled": true,
+    "is_static_analysis_enabled": true,
+    "read_files_elapsed": 0.25018566600920167,
+    "load_macros_elapsed": 2.2532624619925627,
+    "parse_project_elapsed": 1.2567585820070235,
+    "patch_sources_elapsed": 0.2535721059975913,
+    "process_manifest_elapsed": 0.24386557399702724,
+    "load_all_elapsed": 4.520764241999132,
+    "projects": [
+        {
+            "project_name": "healthpulse",
+            "elapsed": 1.2315081269916845,
+            "parsers": [
+                {
+                    "parser": "model",
+                    "elapsed": 0.7793540799902985,
+                    "parsed_path_count": 1
+                },
+                {
+                    "parser": "test",
+                    "elapsed": 0.4287779930018587,
+                    "parsed_path_count": 1
+                }
+            ],
+            "parsed_path_count": 2
+        },
+        {
+            "project_name": "dbt_snowflake",
+            "elapsed": 0.014930414996342734,
+            "parsers": [],
+            "parsed_path_count": 0
+        },
+        {
+            "project_name": "dbt",
+            "elapsed": 0.010032193007646129,
+            "parsers": [
+                {
+                    "parser": "doc",
+                    "elapsed": 0.0004318550054449588,
+                    "parsed_path_count": 1
+                }
+            ],
+            "parsed_path_count": 1
+        }
+    ]
+}

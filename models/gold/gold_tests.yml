@@ -1,0 +1,76 @@
+version : 1
+
+models:
+
+# DIM_CLINICS TABLE
+  - name: dim_clinics
+    columns:
+      - name: provider_clinic_id
+        tests:
+          - not_null
+          - unique
+    
+
+# DIM_DATES TABLE
+  - name: dim_dates
+    columns:
+      - name: appointment_date
+        tests:
+          - not_null
+          - unique
+
+# DIM_PATIENTS TABLE
+  - name: dim_patients
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+          - unique
+
+# DIM_PROVIDERS TABLE
+  - name: dim_providers
+    columns:
+      - name: provider_id
+        tests:
+          - not_null
+          - unique
+  
+# FACT_APPOINTMENTS TABLE
+  - name: fact_appointments
+    columns:
+      - name: appointment_id
+        tests:
+          - not_null
+          - unique
+
+      - name: patient_id
+        description: "Foreign key to dim_patients"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_patients')
+              field: patient_id
+
+      - name: provider_id
+        description: "Foreign key to dim_providers"
+        tests:  
+          - not_null
+          - relationships:
+              to: ref('dim_providers')
+              field: provider_id
+
+      - name: provider_clinic_id
+        description: "Foreign key to dim_clinics"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_clinics')
+              field: provider_clinic_id
+
+      - name: date_id
+        description: "Foreign key to dim_dates"   
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: date_id

@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: bronze
+    database : healthpulse_s3_db
+    schema: bronze_schema
+    tables:
+      - name: raw_appointments
