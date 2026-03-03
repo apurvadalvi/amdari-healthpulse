@@ -21,7 +21,7 @@ The solution follows a structured **Bronze → Silver → Gold** architecture.
 
 ## 🏗 Architecture Overview
 
-![Architecture Diagram] (docs/Architecture_diagram.png)
+< img src = "docs/Architecture_diagram.png" width = 700>
 
 ---
 
