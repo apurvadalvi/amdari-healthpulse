@@ -21,20 +21,7 @@ The solution follows a structured **Bronze → Silver → Gold** architecture.
 
 ## 🏗 Architecture Overview
 
-AWS S3 (Raw Parquet Files)
-│
-▼
-Snowflake External Stage
-│
-▼
-Bronze Layer (Raw Table)
-│
-▼
-Silver Layer (Cleaned & Standardized)
-│
-▼
-Gold Layer (Star Schema)
-
+![Architecture Diagram] (docs/Architecture_diagram.png)
 
 ---
 
