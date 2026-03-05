@@ -21,7 +21,7 @@ The solution follows a structured **Bronze → Silver → Gold** architecture.
 
 ## 🏗 Architecture Overview
 
-< img src = "docs/Architecture_diagram.png" width = 700>
+![docs/Architecture_diagram.png](https://github.com/apurvadalvi/amdari-healthpulse/blob/8beb90d10cc5fe444db02b6fd513ba41fb17782e/docs/Architecture_diagram.png)"
 
 ---
 
