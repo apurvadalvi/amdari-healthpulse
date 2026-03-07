@@ -25,6 +25,8 @@ to_time(split_part(hours, '-', 2), 'HH24:MI') as closing_time,
 current_timestamp() AS last_updated_at
 
 from {{source('bronze', 'raw_appointments')}}
+
+
 {% if is_incremental() %}
     where appointment_id not in (select appointment_id from {{ this }})
 {% endif %}

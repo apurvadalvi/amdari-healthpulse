@@ -15,13 +15,13 @@ The objective of this project was to:
 - Implement incremental processing
 - Enforce data quality with dbt tests
 
-The solution follows a structured **Bronze → Silver → Gold** architecture.
+The solution follows a structured Medallion architecture.
 
 ---
 
 ## 🏗 Architecture Overview
 
-![docs/Architecture_diagram.png](https://github.com/apurvadalvi/amdari-healthpulse/blob/8beb90d10cc5fe444db02b6fd513ba41fb17782e/docs/Architecture_diagram.png)"
+![docs/Architecture_diagram.png](https://github.com/apurvadalvi/amdari-healthpulse/blob/8beb90d10cc5fe444db02b6fd513ba41fb17782e/docs/Architecture_diagram.png)
 
 ---
 
@@ -80,28 +80,25 @@ Both Silver and Gold models are configured using dbt’s incremental materializa
 
 Data quality checks are implemented using dbt tests defined in `silver_test.yml` and `gold_test.yml` files.
 
-Tests include:
-
-- `not_null`
-- `unique`
-- `relationships`
+Tests include Schema validation, uniqueness, referential integrity, and domain checks
 
 
 These tests ensure:
 - Primary keys are unique
 - Foreign keys reference valid dimension records
 
-
+---
 
 Run process using:
+- pip install -r requirements.txt
 - dbt run
 - dbt test
 
 
+---
 ### 
 Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+- Learn more about Snowflake [in the docs](https://docs.snowflake.com/en/)
+- Learn more about AWS S3 [in the docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)
+
