@@ -1,4 +1,4 @@
-create database if not exists healthpulse_s3_db;
+create database if not exists healthpulse_prod_db;
 
 use healthpulse_s3_db;
 
