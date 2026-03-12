@@ -1,7 +1,7 @@
 version : 1
 
 models:
-  - name: silver_appointments
+  - name: silver_data
     description: "This model transforms the raw appointments data from the bronze layer into a cleaned and structured format in the silver layer. It includes data cleaning, type casting, and basic transformations to prepare the data for analysis and reporting."
     columns:
       - name: appointment_id
