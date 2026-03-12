@@ -1,83 +1,59 @@
-# Amdari Project – Healthcare Appointments Data Warehouse  
-**Snowflake + AWS S3 + dbt**
+# Amdari HealthPulse – Healthcare Appointments Data Warehouse
+
+A modern data warehouse project demonstrating end-to-end data ingestion, transformation, and modeling using Snowflake, dbt, and AWS. The solution follows a structured Medallion architecture.
+
+## Overview
+Amdari HealthPulse is a data engineering project that builds a healthcare appointments data warehouse using Snowflake and dbt. The project demonstrates how raw healthcare appointment data can be ingested, transformed, and modeled into an analytical data warehouse following a layered architecture.
+
+The project includes two ingestion approaches:
+- Manual pipeline implemented with Python and SQL notebooks
+- Automated Snowflake pipeline using AWS S3 and Snowpipe
+
+Both pipelines ultimately transform data through Bronze → Silver → Gold layers to produce analytics-ready tables.
 
 ---
 
-## 📌 Project Summary
-
-This project was developed as part of the **Amdari Data Engineering Project** to demonstrate an end-to-end modern data pipeline using Snowflake and dbt.
-
-The objective of this project was to:
-
-- Ingest raw appointment data from AWS S3 into Snowflake
-- Transform and standardize data using dbt
-- Build an analytics-ready Gold layer using a star schema
-- Implement incremental processing
-- Enforce data quality with dbt tests
-
-The solution follows a structured Medallion architecture.
+## Tech Stack
+- Snowflake – Cloud data warehouse
+- dbt (Data Build Tool) – Data transformation and testing
+- AWS S3 – Cloud storage for raw data ingestion
+- Python – Data ingestion and preprocessing
+- SQL – Data transformations and modeling
 
 ---
 
-## 🏗 Architecture Overview
+## Architecture Overview
+The project follows a modern data warehouse architecture.
 
-![docs/Architecture_diagram.png](https://github.com/apurvadalvi/amdari-healthpulse/blob/8beb90d10cc5fe444db02b6fd513ba41fb17782e/docs/Architecture_diagram.png)
+Raw data is ingested either through a manual ingestion pipeline or an automated Snowpipe pipeline, then transformed using dbt into structured analytical models.
 
----
-
-## 🥉 Bronze Layer – Raw Data Ingestion
-
-- Raw Parquet files are stored in AWS S3.
-- A Snowflake external stage is configured to connect to S3.
-- Data is loaded into a Bronze table using:
-  - Snowpipe (auto-ingest).
-- No transformations are applied at this stage.
-- An ingestion timestamp column is maintained to track loads.
-
-The Bronze layer preserves the raw structure of the data.
+![Architecture Diagram](docs/architecture.png)
 
 ---
 
-## 🥈 Silver Layer – Data Cleaning & Standardization
+## Data Warehouse Layers
 
-The Silver layer is built using dbt models.
+### 🥉 Bronze Layer – Raw Data Ingestion
+The Bronze layer stores raw ingested data with minimal transformation. Data types are initially stored as strings to preserve source data and allow validation in later stages.
 
-Key transformations include:
+### 🥈 Silver Layer – Data Cleaning & Standardization
+The Silver layer performs data cleaning and standardization, including:
+- Data type validation
+- Null handling
+- Basic data quality checks
 
-- Enforcing correct data types
-- Converting ID columns to `VARCHAR`
-- Standardising date formats
-- Converting numeric flags (0/1) to Boolean
-- Mapping no-show indicators to meaningful status values
-- Applying incremental logic to process only newly ingested records
-
-Silver models ensure consistency, integrity, and usability of the data.
-
----
-
-## 🥇 Gold Layer – Star Schema Modeling
-
-The Gold layer is designed for analytics and reporting.
-
-### Dimension Tables
-
-- `dim_patients`
-- `dim_clinics`
-- `dim_providers`
-- `dim_dates`
-
-### Fact Table
-
-- `fact_appointments`
+### 🥇 Gold Layer – Star Schema Modeling
+The Gold layer contains analytics-ready models structured as a star schema, including fact and dimension tables used for reporting and analysis.
 
 The fact table contains foreign keys referencing the dimension tables and stores business-relevant appointment metrics.
 
 Both Silver and Gold models are configured using dbt’s incremental materialization to prevent full table replacement and ensure scalability.
 
+![Star Schema](docs/starschema.png)
+
 ---
 
-## 🧪 Data Quality & Testing
-
+## Data Quality and Testing
 Data quality checks are implemented using dbt tests defined in `silver_test.yml` and `gold_test.yml` files.
 
 Tests include Schema validation, uniqueness, referential integrity, and domain checks
@@ -89,15 +65,20 @@ These tests ensure:
 
 ---
 
-Run process using:
-- pip install -r requirements.txt
-- dbt run
-- dbt test
+## Project Structure
+Key components of the repository include:
 
+- pipelines/manual_pipeline/ – Notebook-based manual ingestion pipeline
+- pipelines/snowpipe_pipeline/ – Snowflake Snowpipe ingestion setup
+- models/ – dbt transformations for Silver and Gold layers
+- docs/ – Architecture diagrams and data dictionary
+- macros/ – dbt macros used across models
+
+Each folder contains its own README with detailed execution steps.
 
 ---
-### 
-Resources:
+
+### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
 - Learn more about Snowflake [in the docs](https://docs.snowflake.com/en/)
 - Learn more about AWS S3 [in the docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)
