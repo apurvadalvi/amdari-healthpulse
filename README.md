@@ -27,7 +27,7 @@ The project follows a modern data warehouse architecture.
 
 Raw data is ingested either through a manual ingestion pipeline or an automated Snowpipe pipeline, then transformed using dbt into structured analytical models.
 
-![Architecture Diagram](docs/architecture.png)
+![Architecture Diagram](docs/Architecture_diagram.png)
 
 ---
 
@@ -49,7 +49,7 @@ The fact table contains foreign keys referencing the dimension tables and stores
 
 Both Silver and Gold models are configured using dbt’s incremental materialization to prevent full table replacement and ensure scalability.
 
-![Star Schema](docs/starschema.png)
+![Star Schema](docs/Star_schema.png)
 
 ---
 
